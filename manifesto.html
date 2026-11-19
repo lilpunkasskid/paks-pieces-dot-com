@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>~*~ PAK'S MANIFESTO ~*~ DOC REF: PAK-001</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <!-- Pure client-side Word (.docx) generator library -->
+  <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+  <style>
+    body {
+      background-color: #000000;
+      color: #00ff00;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 20px;
+    }
+
+    a { color: #00ffff; }
+    a:visited { color: #ff00ff; }
+
+    /* Main Container */
+    .manifesto-frame {
+      width: 780px;
+      max-width: 100%;
+      margin: 0 auto;
+      border: 5px ridge #808080;
+      background-color: #0a0a0a;
+    }
+
+    /* Header Section with Dripping Gothic Title */
+    .header-box {
+      background-color: #000000;
+      border-bottom: 4px ridge #c0c0c0;
+      padding: 24px 15px 34px 15px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .drip-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .manifesto-title {
+      font-family: "UnifrakturMaguntia", "Old English Text MT", "Blackletter", serif;
+      font-size: 56px;
+      font-weight: normal;
+      color: #cc0000;
+      text-shadow:
+        0 0 8px rgba(255, 0, 0, 0.55),
+        2px 3px 0px #330000;
+      margin: 0;
+      letter-spacing: 3px;
+      line-height: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Animated Red Drips */
+    .drip {
+      position: absolute;
+      top: 82%;
+      width: 6px;
+      background: linear-gradient(180deg, #990000 0%, #ff0000 85%, #ff4d4d 100%);
+      border-radius: 0 0 50% 50%;
+      z-index: 1;
+      animation: dripStretch 3.4s infinite ease-in;
+    }
+
+    .drip::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background-color: #ff0000;
+      border-radius: 50%;
+    }
+
+    .drip-1 { left: 10%; height: 14px; animation-delay: 0s; animation-duration: 3.1s; }
+    .drip-2 { left: 26%; height: 22px; animation-delay: 1.2s; animation-duration: 3.8s; }
+    .drip-3 { left: 45%; height: 18px; animation-delay: 0.5s; animation-duration: 2.9s; }
+    .drip-4 { left: 63%; height: 26px; animation-delay: 1.9s; animation-duration: 4.1s; }
+    .drip-5 { left: 79%; height: 16px; animation-delay: 0.8s; animation-duration: 3.3s; }
+    .drip-6 { left: 91%; height: 20px; animation-delay: 2.3s; animation-duration: 3.6s; }
+
+    @keyframes dripStretch {
+      0% { transform: scaleY(0.3) translateY(0px); opacity: 1; }
+      65% { transform: scaleY(1.35) translateY(4px); opacity: 1; }
+      90% { transform: scaleY(1.5) translateY(16px); opacity: 0; }
+      100% { transform: scaleY(0.3) translateY(0px); opacity: 0; }
+    }
+
+    .sub-bar {
+      background-color: #000080;
+      color: #ffffff;
+      padding: 6px 12px;
+      border-bottom: 3px ridge #808080;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .content-area {
+      padding: 20px;
+    }
+
+    /* Scrollable Text Box */
+    .scroll-text-box {
+      width: 100%;
+      height: 380px;
+      overflow-y: scroll;
+      background-color: #111111;
+      color: #e6e6e6;
+      border: 3px inset #808080;
+      padding: 18px;
+      box-sizing: border-box;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .scroll-text-box::-webkit-scrollbar {
+      width: 16px;
+    }
+    .scroll-text-box::-webkit-scrollbar-track {
+      background: #c0c0c0;
+      border-left: 1px solid #808080;
+    }
+    .scroll-text-box::-webkit-scrollbar-thumb {
+      background: #808080;
+      border: 2px outset #ffffff;
+    }
+
+    .section-head {
+      color: #ffff00;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed #444444;
+      padding-bottom: 3px;
+    }
+
+    .section-head:first-child {
+      margin-top: 0;
+    }
+
+    .principle-label {
+      color: #00ff00;
+      font-weight: bold;
+    }
+
+    /* Action Bar Below Scroll Box */
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background-color: #161616;
+      border: 2px outset #c0c0c0;
+      padding: 12px;
+    }
+
+    .win95-btn {
+      background-color: #c0c0c0;
+      color: #000000;
+      border-top: 2px solid #ffffff;
+      border-left: 2px solid #ffffff;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      font-family: "MS Sans Serif", "Courier New", sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 6px 12px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .win95-btn:active {
+      border-top: 2px solid #404040;
+      border-left: 2px solid #404040;
+      border-right: 2px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
+    }
+
+    @media print {
+      body { background: #ffffff; color: #000000; padding: 0; }
+      .manifesto-frame { border: none; background: #ffffff; width: 100%; }
+      .header-box { background: #ffffff; border-bottom: 2px solid #000000; padding: 10px 0; }
+      .manifesto-title { color: #000000; text-shadow: none; font-family: "Courier New", monospace; font-size: 28px; }
+      .drip, .sub-bar, .action-bar { display: none !important; }
+      .scroll-text-box {
+        height: auto;
+        overflow: visible;
+        border: none;
+        background: #ffffff;
+        color: #000000;
+        padding: 0;
+      }
+      .section-head, .principle-label { color: #000000 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manifesto-frame">
+    <!-- TOP BAR -->
+    <div class="sub-bar">
+      <span>WINWORD.EXE - PAKS_MANIFESTO_2026.DOCX</span>
+      <a href="index.html" style="color: #ffff00; font-weight: bold; text-decoration: none;">[ &lt;&lt; RETURN TO SHOP ]</a>
+    </div>
+
+    <!-- MAIN GOTHIC DRIPPING HEADER -->
+    <div class="header-box">
+      <div class="drip-wrapper">
+        <h1 class="manifesto-title">Pak's Manifesto</h1>
+        <span class="drip drip-1"></span>
+        <span class="drip drip-2"></span>
+        <span class="drip drip-3"></span>
+        <span class="drip drip-4"></span>
+        <span class="drip drip-5"></span>
+        <span class="drip drip-6"></span>
+      </div>
+      <p style="color: #00ffff; margin: 14px 0 0 0; font-size: 12px;">
+        [ DOC REF: PAK-001 // ANTI-DESIGNER SKATE &amp; TEXTILE TREATISE // 2026 ]
+      </p>
+    </div>
+
+    <div class="content-area">
+      <div style="font-size: 11px; color: #aaaaaa; margin-bottom: 6px;">
+        &gt; SCROLL TO READ FULL DOCUMENT OR EXPORT WORD DOCUMENT (.DOCX) BELOW:
+      </div>
+
+      <!-- SCROLLABLE TEXT BOX WITH UPDATED MANIFESTO -->
+      <div class="scroll-text-box" id="manifesto-text">
+        <div class="section-head">PREAMBLE – THE ILLUSION OF ARCHIVE</div>
+        <p>
+          Archive and contemporary fashion have been made a staple in underground culture. The rarer and older a garment is, the higher the value on the reselling market. This has delivered a scene that is focused on archive pieces, character portrayal, and identity, instead of one that focuses on talent and genuine character.
+        </p>
+        <p>
+          pak’s Pieces is meant to exist as a critique of modern archive culture.
+        </p>
+
+        <div class="section-head">GENERAL THESIS</div>
+        <p>
+          pak’s Pieces is a project that seeks to deliver quality with a lack of quantity. Each piece is archived as a 1-of-1 to never be made again. The main purpose behind this project is to deliver clothes that are cheap but worthy of being seen as valuable. By owning one of pak’s Pieces, it is not the dollar amount that is impressive—it is the fact that you got to experience the piece in the first place.
+        </p>
+
+        <div class="section-head">THE PROCESS – A MATERIAL WORK</div>
+        <p>
+          To deliver high-quality silhouettes and fabric for cheap prices, pak’s Pieces was orchestrated with the business model of upcycling. Each piece will be made of thrifted fabrics and use other materials to enrich the value of said piece.
+        </p>
+        <p>
+          Every piece will begin at the bottom of the food chain: used, old, and unwanted. Everyday garments and materials will be bought at thrift bins, clearance racks, and cheap resells, and through artisanal work, heavy-duty upholstery stitching, and care, will be reformed into something of quality and status. Each garment will come with its history. A detailed synopsis of each piece will be given to the buyer, detailing where the original building blocks were from. Original logos will be covered where a stamp of approval and quality control will be placed. Human labor will be present in the imperfections—not as an aesthetic, but as undeniable proof that the object was made with care by hand.
+        </p>
+
+        <div class="section-head">INFLUENCE</div>
+        <p>
+          Every piece and design of the brand is intentional. I am in love with the underground rap scene and being a part of it in any way I can. I think that the music and fashion work in tandem to display a way for people to express themselves. Thankfully enough for me, internet and skate culture have found a way to matriculate themselves into the scene. Their influence on the project can be found scattered throughout. pak’s Pieces is meant to be an egregore of the culture that should be accessible to everyone. These pieces are meant to be worn, meant to be used. The more tarnished one of pak’s Pieces is, the better.
+        </p>
+
+        <div class="section-head">SKATE &amp; BREAK MY CLOTHES</div>
+        <p>
+          Since skating is an inspiration for the culture and designs of the scene that the project is based on, pak’s Pieces aims to double as functional skate wear. Every modification will have the purpose of enriching the fashion aspect of the piece, while also being meant to be used as structural reinforcement. Meaning that each piece is meant to be skidded across the ground, bled in, or even ultimately destroyed. pak’s Pieces are not protective gear; wear at your own risk. Participate in extreme events at your own risk. Do not attempt any acts mentioned at home. These 1-of-1 pieces are not meant to be kept sealed away, but meant to be worn and sent back to be fixed until they are unrecognizable—where the only sense that they existed is the documentation left behind.
+        </p>
+        <p>
+          I want you to skate in these clothes, stage dive in these clothes, perform shows in these clothes. Do as many extreme things as possible in these clothes and document it. Leave me a sense of documentation that my clothes brought a sense of meaning to the world.
+        </p>
+
+        <div class="section-head">KILL THE RICH</div>
+        <p>
+          Unfortunately, archive fashion is hidden behind a paywall. Many individuals wanting to sport archive pieces are stuck resorting to buying replica pieces that ruin the purpose of archive, or are stuck spending a hefty amount of money for a piece. This not only restricts the culture that underground fashion is built on, but establishes a classist culture. For an individual to be taken seriously in the scene, their style is judged and envaulted. If their style is not kept to standard, their ethos as an artist is immediately tarnished.
+        </p>
+
+        <div class="section-head">SCARCITY</div>
+        <p>
+          There are tags on each product listing on the website that are labeled “1 OF 1”. I intend for each piece to be a 1-of-1 garment to exemplify the “archive” aspect of each drop. Each drop will only have roughly 15 garments to be purchased. This design choice is intentional. Each piece should be seen as part of an exhibit (the drop) and should be treated with respect.
+        </p>
+
+        <div class="section-head">GOALS OF PROJECT</div>
+        <p>
+          I do not wish to make money from this project. This is an experimental art project disguised as a clothing brand. I want to deliver a wearable exhibit of my work—an exhibit that can be displayed infinitely, as long as my work is worn. Each piece signifies a part of me and the culture that cannot be accessed by everyone. pak’s Pieces is meant to bridge that gap between archive and price. Although the pieces are scarce, there is a fair chance for everyone to obtain something reminiscent of and equally valued as an archive or designer garment.
+        </p>
+
+        <div class="section-head">FUTURE DIRECTION</div>
+        <p>
+          I wish to not see any reselling of my work for prices like those for archive pieces. I want to see a future where my work is seen as a statement against the reselling and classist archive fashion scene that is prevalent in the underground. I want to take this project into a reputable “brand”—one where I am more recognized for this work, rather than my music. I want my music and my productions to complement my fashion design, rather than speak for it.
+        </p>
+        <p>
+          I intend to take my work as a fashion designer further away from pak’s Pieces, possibly even resembling the antithesis of this project. Although it is wrong, I am not perfect.
+        </p>
+
+        <div class="section-head">DECLARATION OF CHARACTER</div>
+        <p class="principle-item">
+          <span class="principle-label">NO MASS PRODUCTION –</span> All garments will be an individually created, numbered, and measured study. Once claimed, it will never be remade.
+        </p>
+        <p class="principle-item">
+          <span class="principle-label">NO HIGH PRICING –</span> Art and durable clothes should belong to people who are active in the culture, not the people with the most money.
+        </p>
+        <p class="principle-item">
+          <span class="principle-label">TOTAL TRANSPARENCY –</span> Every piece will carry its history, modification, inspiration, and serial record into the archive.
+        </p>
+        <p class="principle-item">
+          <span class="principle-label">BUILT TO BE WORN –</span> Wear the pieces. Skate the pieces. Send them back to be stitched together again.
+        </p>
+
+        <div class="signoff-block" style="margin-top: 22px; border-top: 1px dashed #666666; padding-top: 10px; color: #00ffff;">
+          Signed &amp; archived by <strong>lil pak</strong>, 2026
+        </div>
+      </div>
+
+      <!-- DOWNLOAD & PRINT CONTROLS -->
+      <div class="action-bar">
+        <span style="font-size: 11px; color: #cccccc;">
+          File: <b style="color: #00ff00;">PAKS_MANIFESTO_2026.docx</b> (Title Page + Full Treatise)
+        </span>
+        <div>
+          <button class="win95-btn" onclick="exportManifestoDocx()">&#11015; DOWNLOAD .DOCX FILE</button>
+          <button class="win95-btn" onclick="window.print()">[ PRINT DOCUMENT ]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function exportManifestoDocx() {
+      if (!window.docx) {
+        alert("Could not load Word generator library. Check internet connection and try again.");
+        return;
+      }
+
+      const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle, PageBreak } = window.docx;
+      const box = document.getElementById('manifesto-text');
+      const bodyChildren = [];
+
+      Array.from(box.children).forEach((el) => {
+        if (el.classList.contains('section-head')) {
+          bodyChildren.push(
+            new Paragraph({
+              spacing: { before: 280, after: 120 },
+              border: {
+                bottom: { color: "444444", space: 4, style: BorderStyle.SINGLE, size: 6 }
+              },
+              children: [
+                new TextRun({
+                  text: el.innerText.trim(),
+                  font: "Courier New",
+                  size: 23, // 11.5pt
+                  bold: true,
+                  color: "111111"
+                })
+              ]
+            })
+          );
+        } else if (el.classList.contains('principle-item')) {
+          const labelEl = el.querySelector('.principle-label');
+          const labelText = labelEl ? labelEl.innerText.trim() + " " : "";
+          const restText = el.innerText.replace(labelEl ? labelEl.innerText : "", "").trim();
+
+          bodyChildren.push(
+            new Paragraph({
+              spacing: { after: 160, line: 300 },
+              children: [
+                new TextRun({
+                  text: labelText,
+                  font: "Courier New",
+                  size: 21,
+                  bold: true,
+                  color: "990000"
+                }),
+                new TextRun({
+                  text: restText,
+                  font: "Courier New",
+                  size: 21,
+                  color: "111111"
+                })
+              ]
+            })
+          );
+        } else if (el.tagName === 'P') {
+          bodyChildren.push(
+            new Paragraph({
+              spacing: { after: 160, line: 300 },
+              children: [
+                new TextRun({
+                  text: el.innerText.trim(),
+                  font: "Courier New",
+                  size: 21,
+                  color: "111111"
+                })
+              ]
+            })
+          );
+        } else if (el.classList.contains('signoff-block')) {
+          bodyChildren.push(
+            new Paragraph({
+              spacing: { before: 360 },
+              border: {
+                top: { color: "666666", space: 6, style: BorderStyle.DASHED, size: 6 }
+              },
+              children: [
+                new TextRun({
+                  text: el.innerText.trim() + " // DOC REF: PAK-001",
+                  font: "Courier New",
+                  size: 20,
+                  bold: true,
+                  color: "111111"
+                })
+              ]
+            })
+          );
+        }
+      });
+
+      const doc = new Document({
+        sections: [
+          {
+            properties: {
+              page: {
+                margin: { top: 1440, right: 1584, bottom: 1440, left: 1584 }
+              }
+            },
+            children: [
+              // ==========================================
+              // PAGE 1: STANDALONE TITLE PAGE
+              // ==========================================
+              new Paragraph({
+                alignment: AlignmentType.CENTER,
+                spacing: { before: 600, after: 2200 },
+                children: [
+                  new TextRun({
+                    text: "DOCUMENT REF: PAK-001 // ARCHIVAL EDITION",
+                    font: "Courier New",
+                    size: 20,
+                    bold: true,
+                    color: "555555"
+                  })
+                ]
+              }),
+              new Paragraph({
+                alignment: AlignmentType.CENTER,
+                spacing: { before: 400, after: 280 },
+                border: {
+                  top: { color: "111111", space: 12, style: BorderStyle.SINGLE, size: 18 },
+                  bottom: { color: "111111", space: 12, style: BorderStyle.SINGLE, size: 18 }
+                },
+                children: [
+                  new TextRun({
+                    text: "PAK'S MANIFESTO",
+                    font: "Courier New",
+                    size: 64, // 32pt
+                    bold: true,
+                    color: "990000"
+                  })
+                ]
+              }),
+              new Paragraph({
+                alignment: AlignmentType.CENTER,
+                spacing: { before: 200, after: 2600 },
+                children: [
+                  new TextRun({
+                    text: "A Critique of Archive Fashion, Skate Utility, and Anti-Classist Garment Engineering",
+                    font: "Courier New",
+                    size: 21,
+                    italics: true,
+                    color: "333333"
+                  })
+                ]
+              }),
+              new Paragraph({
+                alignment: AlignmentType.CENTER,
+                children: [
+                  new TextRun({
+                    text: "AUTHOR: lil pak",
+                    font: "Courier New",
+                    size: 20,
+                    color: "333333"
+                  }),
+                  new TextRun({
+                    break: 1,
+                    text: "PROJECT: pak's Pieces (1-of-1 Reconstructed Textiles & Skate Utility)",
+                    font: "Courier New",
+                    size: 20,
+                    color: "333333"
+                  }),
+                  new TextRun({
+                    break: 1,
+                    text: "DATE: 2026",
+                    font: "Courier New",
+                    size: 20,
+                    color: "333333"
+                  })
+                ]
+              }),
+
+              // EXPLICIT PAGE BREAK AFTER TITLE PAGE
+              new Paragraph({
+                children: [new PageBreak()]
+              }),
+
+              // ==========================================
+              // PAGE 2+: MANIFESTO BODY
+              // ==========================================
+              ...bodyChildren
+            ]
+          }
+        ]
+      });
+
+      const blob = await Packer.toBlob(doc);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "PAKS_MANIFESTO_2026.docx";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+</body>
+</html>

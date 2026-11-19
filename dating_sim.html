@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>~*~ PAK'S THRIFT &amp; SKATE CLUB! ~*~ (v1.04_CORRUPT)</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 15px;
+      background-color: #1a0d16;
+      font-family: "Comic Sans MS", "Trebuchet MS", cursive, sans-serif;
+      color: #331122;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      transition: background-color 0.2s;
+    }
+
+    body.corrupt-bg {
+      background-color: #000000;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    /* Top Nav Bar */
+    .top-bar {
+      width: 800px;
+      max-width: 100%;
+      background: #ff99cc;
+      border: 3px outset #ffffff;
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    body.corrupt-bg .top-bar {
+      background: #000080;
+      color: #ffffff;
+      border-color: #808080;
+    }
+
+    /* Main Visual Novel Viewport */
+    #game-screen {
+      width: 800px;
+      max-width: 100%;
+      height: 540px;
+      border: 5px ridge #ff66b2;
+      position: relative;
+      overflow: hidden;
+      background: repeating-linear-gradient(
+        45deg,
+        #ffe6f2,
+        #ffe6f2 20px,
+        #ffd1e8 20px,
+        #ffd1e8 40px
+      );
+      box-shadow: 0 0 25px rgba(255, 102, 178, 0.4);
+    }
+
+    #game-screen.glitched {
+      border-color: #ff0000;
+      background: #080808;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
+    }
+
+    /* Screen Shake & RGB Split Glitch */
+    @keyframes violentShake {
+      0% { transform: translate(0px, 0px) skew(0deg); }
+      20% { transform: translate(-6px, 4px) skew(-2deg); filter: hue-rotate(90deg); }
+      40% { transform: translate(6px, -4px) skew(2deg); filter: invert(1); }
+      60% { transform: translate(-4px, -2px) skew(1deg); }
+      80% { transform: translate(5px, 3px) skew(-1deg); filter: contrast(300%); }
+      100% { transform: translate(0px, 0px) skew(0deg); }
+    }
+
+    .shaking {
+      animation: violentShake 0.25s infinite;
+    }
+
+    /* Affection Meter */
+    #affection-box {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #ff3399;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: bold;
+      z-index: 10;
+    }
+
+    #game-screen.glitched #affection-box {
+      background: #000000;
+      border-color: #ff0000;
+      color: #ff0000;
+      border-radius: 0;
+    }
+
+    /* Fake DDLC-Style Sticker */
+    .sticker-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #ffff99;
+      border: 2px dashed #ff3399;
+      padding: 5px 10px;
+      font-size: 11px;
+      transform: rotate(3deg);
+      z-index: 10;
+    }
+
+    /* SVG Character Sprite Stage */
+    #sprite-stage {
+      position: absolute;
+      bottom: 165px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 290px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 5;
+      transition: transform 0.2s;
+    }
+
+    .bounce-talk {
+      animation: talkHop 0.3s ease;
+    }
+
+    @keyframes talkHop {
+      0% { transform: translateX(-50%) translateY(0px); }
+      50% { transform: translateX(-50%) translateY(-12px); }
+      100% { transform: translateX(-50%) translateY(0px); }
+    }
+
+    /* Dialogue Box (Bottom) */
+    #dialogue-box {
+      position: absolute;
+      bottom: 14px;
+      left: 18px;
+      right: 18px;
+      height: 155px;
+      background: rgba(255, 240, 248, 0.96);
+      border: 4px solid #ff66b2;
+      border-radius: 12px;
+      padding: 22px 20px 14px 20px;
+      z-index: 20;
+      cursor: pointer;
+    }
+
+    #game-screen.glitched #dialogue-box {
+      background: #0d0d0d;
+      border: 3px solid #ff0000;
+      border-radius: 0;
+      color: #00ff00;
+    }
+
+    #speaker-tag {
+      position: absolute;
+      top: -18px;
+      left: 20px;
+      background: #ff3399;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 3px 16px;
+      border: 2px solid #ffffff;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    #game-screen.glitched #speaker-tag {
+      background: #ff0000;
+      color: #000000;
+      border-color: #00ff00;
+      border-radius: 0;
+    }
+
+    #dialogue-text {
+      font-size: 16px;
+      line-height: 1.45;
+      margin: 0;
+      min-height: 75px;
+    }
+
+    .next-arrow {
+      position: absolute;
+      bottom: 10px;
+      right: 16px;
+      font-size: 13px;
+      color: #ff3399;
+      font-weight: bold;
+      animation: blinkArrow 0.8s infinite;
+    }
+
+    @keyframes blinkArrow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    /* Choice Overlay */
+    #choices-overlay {
+      display: none;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 182, 219, 0.65);
+      z-index: 30;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      padding: 20px;
+    }
+
+    #game-screen.glitched #choices-overlay {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .choice-btn {
+      width: 480px;
+      max-width: 90%;
+      background: #ffffff;
+      border: 3px solid #ff3399;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: bold;
+      color: #660033;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 4px 4px 0px #ff66b2;
+    }
+
+    .choice-btn:hover {
+      background: #ffe6f2;
+      transform: scale(1.02);
+    }
+
+    #game-screen.glitched .choice-btn {
+      background: #000000;
+      border: 2px solid #00ff00;
+      border-radius: 0;
+      color: #00ff00;
+      box-shadow: 4px 4px 0px #ff0000;
+    }
+
+    /* Fake Error Console Log */
+    #error-console {
+      display: none;
+      position: absolute;
+      top: 55px;
+      left: 20px;
+      width: 270px;
+      background: #000000;
+      border: 2px solid #ff0000;
+      color: #ff0000;
+      font-family: "Courier New", monospace;
+      font-size: 11px;
+      padding: 8px;
+      z-index: 15;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <span>♥ PAK'S THRIFT &amp; SKATE CLUB! ♥ (Build 2002.11)</span>
+    <a href="index.html" style="color: inherit; text-decoration: none;">[ X EXIT TO PAK'S PIECES ]</a>
+  </div>
+
+  <div id="game-screen">
+    <div id="affection-box">♥ Archive Demons Banished: <span id="affection-val">0</span>%</div>
+    <div class="sticker-badge" id="sticker">100% Wholesome Visual Novel!</div>
+
+    <!-- Hidden Glitch Console -->
+    <div id="error-console">
+      &gt; Traceback (most recent call last):<br>
+      &gt; File "archive_demon.chr", line 404<br>
+      &gt; MemoryError: $600_hoodie.dll<br>
+      &gt; Deleting reseller_ego.sys...
+    </div>
+
+    <!-- Hand-Drawn SVG Sprite -->
+    <div id="sprite-stage">
+      <svg id="char-svg" width="220" height="270" viewBox="0 0 220 270">
+        <!-- Hair / Beanie -->
+        <path d="M55,85 Q110,15 165,85 L175,140 L45,140 Z" fill="#222222" stroke="#000" stroke-width="3"/>
+        <rect x="52" y="65" width="116" height="22" rx="8" fill="#ff3399" stroke="#000" stroke-width="3" id="beanie-band"/>
+        <!-- Head -->
+        <circle cx="110" cy="115" r="46" fill="#ffe0bd" stroke="#000" stroke-width="3" id="face-circle"/>
+        <!-- Eyes (Normal vs Glitch) -->
+        <g id="eyes-normal">
+          <ellipse cx="92" cy="112" rx="7" ry="10" fill="#000"/>
+          <circle cx="90" cy="109" r="3" fill="#fff"/>
+          <ellipse cx="128" cy="112" rx="7" ry="10" fill="#000"/>
+          <circle cx="126" cy="109" r="3" fill="#fff"/>
+          <!-- Blush -->
+          <ellipse cx="80" cy="126" rx="8" ry="4" fill="#ff80aa" opacity="0.7"/>
+          <ellipse cx="140" cy="126" rx="8" ry="4" fill="#ff80aa" opacity="0.7"/>
+        </g>
+        <g id="eyes-glitch" style="display:none;">
+          <rect x="82" y="106" width="20" height="8" fill="#ff0000"/>
+          <rect x="118" y="106" width="20" height="8" fill="#ff0000"/>
+          <line x1="85" y1="120" x2="85" y2="148" stroke="#ff0000" stroke-width="3"/>
+          <line x1="135" y1="120" x2="135" y2="152" stroke="#ff0000" stroke-width="3"/>
+        </g>
+        <!-- Mouth -->
+        <path id="mouth-path" d="M98,134 Q110,146 122,134" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+        <!-- Thrifted Patchwork Hoodie Torso -->
+        <path d="M55,165 L165,165 L180,265 L40,265 Z" fill="#444444" stroke="#000" stroke-width="3" id="torso"/>
+        <!-- DIY Safety Pin & Canvas Patch -->
+        <rect x="70" y="190" width="32" height="28" fill="#c2b280" stroke="#000" stroke-width="2" transform="rotate(-6 70 190)"/>
+        <line x1="72" y1="194" x2="98" y2="191" stroke="#fff" stroke-width="2" stroke-dasharray="3,2"/>
+        <text x="115" y="215" fill="#00ff00" font-family="Courier New" font-size="11" font-weight="bold">1-OF-1</text>
+      </svg>
+    </div>
+
+    <!-- Choice Buttons Overlay -->
+    <div id="choices-overlay"></div>
+
+    <!-- Bottom Dialogue Box -->
+    <div id="dialogue-box" onclick="advanceScene()">
+      <div id="speaker-tag">Pak-chan ♥</div>
+      <p id="dialogue-text">Click anywhere in this box to start the club meeting~!</p>
+      <div class="next-arrow" id="next-indicator">[ CLICK TO CONTINUE ▼ ]</div>
+    </div>
+  </div>
+
+  <script>
+    let step = 0;
+    let affection = 0;
+    let inChoice = false;
+
+    const screen = document.getElementById('game-screen');
+    const speakerEl = document.getElementById('speaker-tag');
+    const textEl = document.getElementById('dialogue-text');
+    const choicesEl = document.getElementById('choices-overlay');
+    const affectionEl = document.getElementById('affection-val');
+    const spriteStage = document.getElementById('sprite-stage');
+    const eyesNormal = document.getElementById('eyes-normal');
+    const eyesGlitch = document.getElementById('eyes-glitch');
+    const mouthPath = document.getElementById('mouth-path');
+    const beanieBand = document.getElementById('beanie-band');
+    const errorConsole = document.getElementById('error-console');
+    const sticker = document.getElementById('sticker');
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playBeep(freq, type = 'square', duration = 0.08) {
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    const script = [
+      {
+        speaker: "Pak-chan ♥",
+        text: "Konnichiwa!! Welcome to the pak's Pieces Thrift & Skate Club! I'm so happy a cute skater like you finally showed up~!",
+        beep: 520
+      },
+      {
+        speaker: "Pak-chan ♥",
+        text: "Today we're stitching canvas knee gussets onto $3 thrift-bin dress slacks! Doesn't manual labor with heavy upholstery thread make your heart go kawaii mode?!",
+        beep: 580
+      },
+      {
+        choice: true,
+        prompt: "How do you respond to Pak-chan?",
+        options: [
+          { label: "♥ \"I love $15 handmade skate pants! Screw $500 archive demons!\"", route: "good", boost: 50 },
+          { label: "💀 \"Actually I only wear $800 Glick Bogins just to stand near my board.\"", route: "bad", boost: -999 }
+        ]
+      },
+      {
+        speaker: "Pak-chan ♥",
+        text: "Wait... why is the background music slowing down? Did you just open inspect element on my source code?!",
+        glitchStart: true,
+        beep: 140
+      },
+      {
+        speaker: "P̷A̷K̷.̷C̷H̷R̷",
+        text: "I CAN SEE YOUR BROWSER HISTORY. YOU WERE ABOUT TO PAY $1200 ON A SHITTY PAIR OF SWEATPANTS FOR PRE-DISTRESSED SWEATPANTS.",
+        beep: 95
+      },
+      {
+        speaker: "P̷A̷K̷.̷C̷H̷R̷",
+        text: "EVERY GARMENT IS A 1-OF-1 ARTIFACT MEANT TO BE SKATED IN, BLED IN, AND DESTROYED ON CONCRETE. THERE IS NO ESCAPE ROUTE.",
+        beep: 80
+      },
+      {
+        choice: true,
+        prompt: "SELECT YOUR FATE:",
+        options: [
+          { label: "[ JUST PAK'S PIECES ]", route: "end", boost: 100 },
+          { label: "[ JUST PAK'S PIECES ]", route: "end", boost: 100 },
+          { label: "[ JUST PAK'S PIECES ]", route: "end", boost: 100 }
+        ]
+      }
+    ];
+
+    function hopSprite() {
+      spriteStage.classList.remove('bounce-talk');
+      void spriteStage.offsetWidth;
+      spriteStage.classList.add('bounce-talk');
+    }
+
+    function triggerGlitchMode() {
+      document.body.classList.add('corrupt-bg');
+      screen.classList.add('glitched', 'shaking');
+      eyesNormal.style.display = 'none';
+      eyesGlitch.style.display = 'block';
+      mouthPath.setAttribute('d', 'M92,144 L102,134 L110,145 L118,134 L128,144');
+      mouthPath.setAttribute('stroke', '#ff0000');
+      beanieBand.setAttribute('fill', '#00ff00');
+      errorConsole.style.display = 'block';
+      sticker.innerText = "ERR: ARCHIVE_DEMON_DETECTED";
+      sticker.style.background = "#ff0000";
+      sticker.style.color = "#ffffff";
+      setTimeout(() => screen.classList.remove('shaking'), 900);
+    }
+
+    function advanceScene() {
+      if (inChoice) return;
+
+      if (step >= script.length) {
+        speakerEl.innerText = "SYSTEM // ARCHIVE_COMPLETE";
+        textEl.innerHTML = "archive_demon.chr has been successfully deleted.<br><br><b>ENDING 1 OF 1:</b> Go buy a $15 pair of thrifted skate pants and ruin them on grip tape. <a href='index.html' style='color:#ffff00;'>[ RETURN TO STOREFRONT ]</a>";
+        document.getElementById('next-indicator').style.display = 'none';
+        playBeep(220, 'sawtooth', 0.4);
+        return;
+      }
+
+      const current = script[step];
+
+      if (current.choice) {
+        inChoice = true;
+        choicesEl.style.display = 'flex';
+        choicesEl.innerHTML = `<div style="background:#000;color:#fff;padding:6px 14px;font-weight:bold;">${current.prompt}</div>`;
+        current.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'choice-btn';
+          btn.innerText = opt.label;
+          btn.onclick = () => selectChoice(opt);
+          choicesEl.appendChild(btn);
+        });
+        return;
+      }
+
+      if (current.glitchStart) {
+        triggerGlitchMode();
+      }
+
+      speakerEl.innerText = current.speaker;
+      textEl.innerText = current.text;
+      hopSprite();
+      playBeep(current.beep || 440, current.glitchStart ? 'sawtooth' : 'square', 0.12);
+      step++;
+    }
+
+    function selectChoice(opt) {
+      inChoice = false;
+      choicesEl.style.display = 'none';
+      affection += opt.boost;
+      affectionEl.innerText = affection;
+      step++;
+
+      if (opt.route === "bad") {
+        triggerGlitchMode();
+        speakerEl.innerText = "P̷A̷K̷.̷C̷H̷R̷";
+        textEl.innerText = "Y O U   P A I D   $ 5 0 0 0  F O R   P A N T S ? !   I N I T I A T I N G   S Y S T E M   P U R G E . . .";
+        playBeep(75, 'sawtooth', 0.4);
+        step = 4;
+      } else if (opt.route === "good") {
+        speakerEl.innerText = "Pak-chan ♥";
+        textEl.innerText = "Kyaaa~! You really understand anti-classist textile engineering! Here, take this 1-of-1 safety pin—";
+        hopSprite();
+        playBeep(660, 'triangle', 0.15);
+      } else {
+        advanceScene();
+      }
+    }
+  </script>
+
+</body>
+</html>

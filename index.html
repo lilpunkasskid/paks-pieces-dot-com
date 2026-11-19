@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>~*~ PAKS PIECES ~*~ OFFICIAL ARCHIVE &amp; SHOP</title>
+  <style>
+    body {
+      background-color: #000000;
+      color: #00ff00;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 15px;
+    }
+
+    a { color: #00ffff; }
+    a:visited { color: #ff00ff; }
+
+    /* Top Legal & Art Project Notice Banner */
+    .top-project-banner {
+      width: 820px;
+      max-width: 100%;
+      margin: 0 auto 10px auto;
+      background-color: #161616;
+      border: 2px solid #00ffff;
+      color: #ffffff;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 12px;
+      box-sizing: border-box;
+    }
+
+    /* Main Table Container */
+    .main-frame {
+      width: 820px;
+      max-width: 100%;
+      margin: 0 auto;
+      border: 5px ridge #808080;
+      background-color: #0a0a0a;
+    }
+
+    .header-box {
+      background-color: #000000;
+      border-bottom: 4px ridge #c0c0c0;
+      padding: 20px 15px;
+      text-align: center;
+    }
+
+    .header-row {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .site-title {
+      font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+      font-size: 44px;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 2px 2px 0px #444444;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .cat-spin {
+      width: 64px;
+      height: 64px;
+      animation: spinCat 3s linear infinite;
+    }
+
+    @keyframes spinCat {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .marquee-bar {
+      background-color: #ffff00;
+      color: #000000;
+      font-weight: bold;
+      padding: 4px 0;
+      border-bottom: 3px solid #ff0000;
+      font-size: 14px;
+    }
+
+    .sidebar {
+      width: 190px;
+      vertical-align: top;
+      border-right: 4px ridge #808080;
+      padding: 10px;
+      background-color: #111111;
+      font-size: 13px;
+    }
+
+    .content {
+      vertical-align: top;
+      padding: 15px;
+    }
+
+    /* PROD TAPE DECK (WINAMP / WIN95 STYLE) */
+    .tape-deck {
+      background-color: #1c1c1c;
+      border: 3px outset #c0c0c0;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .tape-screen {
+      background-color: #000000;
+      border: 2px inset #808080;
+      color: #00ff00;
+      font-family: "Courier New", monospace;
+      font-size: 12px;
+      padding: 4px 8px;
+      flex-grow: 1;
+    }
+
+    /* SKETCHY GREEN "YOUR DOWNLOAD IS READY" BOX & BUTTON */
+    .sketchy-dl-box {
+      background-color: #efefef;
+      border: 2px solid #888888;
+      padding: 10px;
+      margin-bottom: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #222222;
+      text-align: center;
+      box-shadow: inset 0 0 6px #cccccc;
+    }
+
+    .sketchy-dl-btn {
+      display: inline-block;
+      background: linear-gradient(180deg, #7be619 0%, #3aa600 50%, #2a7d00 100%);
+      border: 2px solid #1e5900;
+      border-radius: 5px;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000000;
+      padding: 10px 22px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.6), inset 0 1px 0 #b8ff70;
+    }
+
+    .sketchy-dl-btn:hover {
+      background: linear-gradient(180deg, #8cff24 0%, #44bf00 50%, #319400 100%);
+    }
+
+    .sketchy-dl-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* SIDEBAR ADS */
+    .playlist-ad {
+      display: block;
+      text-decoration: none;
+      border: 3px solid #ff0000;
+      background: repeating-linear-gradient(
+        45deg,
+        #ffff00,
+        #ffff00 10px,
+        #ffdd00 10px,
+        #ffdd00 20px
+      );
+      color: #000000;
+      font-family: Impact, Arial Black, sans-serif;
+      text-align: center;
+      padding: 8px 4px;
+      margin-top: 15px;
+      cursor: pointer;
+      animation: flashBorder 0.7s steps(2, end) infinite;
+    }
+
+    @keyframes flashBorder {
+      0% { border-color: #ff0000; }
+      50% { border-color: #0000ff; }
+      100% { border-color: #ff0000; }
+    }
+
+    .fake-ad-btn {
+      background-color: #ff0000;
+      color: #ffffff;
+      border: 2px outset #ff8888;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 3px 8px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+
+    /* DATING SIM SIDEBAR AD (Sprite art by Pepo Kukuru @CucurbitaPepo5 - CC0) */
+    .waifu-ad {
+      display: block;
+      position: relative;
+      text-decoration: none;
+      margin-top: 14px;
+      padding: 10px 6px;
+      border: 3px dashed #ffff00;
+      outline: 3px solid #ff0000;
+      text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: #141418;
+      background-image: linear-gradient(rgba(15, 15, 20, 0.52), rgba(15, 15, 20, 0.70)), url("waifus.png");
+      background-size: 520% auto;
+      background-position: 50% 12%;
+      background-repeat: no-repeat;
+      animation: adBorderFlash 0.6s steps(2, end) infinite;
+    }
+
+    @keyframes adBorderFlash {
+      0% { border-color: #ffff00; outline-color: #ff0000; }
+      50% { border-color: #ff0000; outline-color: #ffff00; }
+      100% { border-color: #ffff00; outline-color: #ff0000; }
+    }
+
+    .waifu-ad-close {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: #c0c0c0;
+      color: #000000;
+      border: 1px outset #ffffff;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      font-weight: bold;
+      padding: 0 3px;
+      line-height: 1.2;
+    }
+
+    .waifu-ad-headline {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 20px;
+      line-height: 1.05;
+      color: #ff1a1a;
+      text-shadow: 2px 2px 0px #000000, -1px -1px 0px #000000;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .waifu-ad-sub {
+      font-family: "Comic Sans MS", Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      color: #ffff00;
+      text-shadow: 1px 1px 0px #000000;
+      margin: 4px 0 6px 0;
+      line-height: 1.2;
+    }
+
+    .waifu-ad-sub-box {
+      background-color: #cc0000;
+      border: 1px solid #ffff00;
+      color: #ffff00;
+      font-family: Impact, Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      padding: 2px 4px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .waifu-ad-btn {
+      display: inline-block;
+      background: linear-gradient(180deg, #66ff33 0%, #2eb800 50%, #1f7a00 100%);
+      border: 2px outset #99ff66;
+      color: #ffffff;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      text-shadow: 1px 1px 0px #000000;
+      box-shadow: 2px 2px 0px #000000;
+    }
+
+    .waifu-ad:hover .waifu-ad-btn {
+      background: linear-gradient(180deg, #88ff55 0%, #38e000 50%, #269900 100%);
+    }
+
+    /* Product Cards */
+    .item-table {
+      width: 100%;
+      border: 3px outset #c0c0c0;
+      background-color: #161616;
+      margin-bottom: 20px;
+    }
+
+    .item-img {
+      width: 180px;
+      height: 180px;
+      background-color: #000;
+      border: 2px inset #808080;
+      text-align: center;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Windows 95 Style Buttons */
+    .win95-btn {
+      background-color: #c0c0c0;
+      color: #000000;
+      border-top: 2px solid #ffffff;
+      border-left: 2px solid #ffffff;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      font-family: "MS Sans Serif", "Courier New", sans-serif;
+      font-weight: bold;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .win95-btn:active {
+      border-top: 2px solid #404040;
+      border-left: 2px solid #404040;
+      border-right: 2px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
+    }
+
+    .hit-counter {
+      background-color: #000;
+      border: 2px inset #808080;
+      color: #ff0000;
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+      padding: 4px 8px;
+      display: inline-block;
+      letter-spacing: 3px;
+    }
+
+    /* Checkout & Stash Gate Popups */
+    #checkout-box {
+      display: none;
+      position: fixed;
+      top: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 390px;
+      max-width: 94%;
+      background-color: #c0c0c0;
+      color: #000000;
+      border: 4px outset #ffffff;
+      z-index: 999;
+      font-family: Arial, sans-serif;
+      box-shadow: 10px 10px 0px #000000;
+    }
+
+    #stash-gate-box {
+      display: none;
+      position: fixed;
+      top: 24%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 340px;
+      background-color: #c0c0c0;
+      color: #000000;
+      border: 4px outset #ffffff;
+      z-index: 1000;
+      font-family: Arial, sans-serif;
+      box-shadow: 10px 10px 0px #000000;
+    }
+
+    .popup-title {
+      background-color: #000080;
+      color: #ffffff;
+      padding: 4px 8px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP DISCLOSURE BANNER -->
+  <div class="top-project-banner">
+    <strong style="color: #ffff00;">[ NOTICE ]</strong>
+    <strong>pak's Pieces</strong> is both an <strong>experimental wearable art project</strong> and a <strong>real online shop</strong> selling physical, hand-reconstructed 1-of-1 garments. Early-2000s pop-ups and mirror pages are satirical web art; all clothing orders are real.
+  </div>
+
+  <table class="main-frame" cellpadding="0" cellspacing="0">
+    <!-- HEADER -->
+    <tr>
+      <td colspan="2" class="header-box">
+        <div class="header-row">
+          <img src="cat-logo.png" alt="pak cat" class="cat-spin">
+          <h1 class="site-title">pak's pieces</h1>
+          <img src="cat-logo.png" alt="pak cat" class="cat-spin">
+        </div>
+        <p style="color: #00ffff; margin: 8px 0 0 0; font-size: 13px;">
+          [ B00TLEG TEXT1LE$ // H@ND-M@DE // 1-0F-1 G@RMENT$ ]
+        </p>
+      </td>
+    </tr>
+
+    <!-- MARQUEE -->
+    <tr>
+      <td colspan="2" class="marquee-bar">
+        <marquee scrollamount="6">
+          +++ WELC0ME TO P@K*$ P1ECE$ +++ +++ BUY MY CL0THE$ +++ @LL $@LES F1N@L +++ N0 REFUND$ +++ D1RT CHE@P +++
+        </marquee>
+      </td>
+    </tr>
+
+    <!-- MAIN BODY -->
+    <tr>
+      <!-- LEFT SIDEBAR -->
+      <td class="sidebar">
+        <p style="color: #ff00ff; font-weight: bold; margin-top: 0;">:: NAVIGATION ::</p>
+        <ul style="padding-left: 18px; line-height: 1.8;">
+          <li><a href="pak_archive.html">PAK_ARCHIVE.EXE</a></li>
+          <li><a href="manifesto.html">MANIFESTO.TXT</a></li>
+          <li><a href="#" onclick="openCart(); return false;">VIEW CART (<span id="cart-count">0</span>)</a></li>
+          <li><a href="mailto:pakspieces@gmail.com">EMAIL ME</a></li>
+          <li><a href="https://www.instagram.com/lilpunkasskid/" target="_blank">INSTAGRAM</a></li>
+        </ul>
+
+        <hr style="border: 1px dashed #444;">
+
+        <div style="border: 2px solid #ff0000; padding: 6px; text-align: center; background: #200000;">
+          <span class="blink">! WARNING !</span><br>
+          <span style="font-size: 11px; color: #fff;">
+            DO NOT WASH IN HOT WATER OR GARMENT WILL MUTATE.
+          </span>
+        </div>
+
+        <br>
+        <div style="text-align: center;">
+          <span style="font-size: 11px; color: #aaa;">VISITORS SINCE 2026:</span><br>
+          <div class="hit-counter">00000</div>
+        </div>
+
+        <!-- SOUNDCLOUD PLAYLIST ADVERTISEMENT -->
+        <a href="https://soundcloud.com/user-177392611/sets/paks-punching-playlist?si=7c42b3d1fe2e4c478d60dd49a454280e&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank" class="playlist-ad">
+          <div style="font-size: 10px; background: #ff0000; color: #fff; padding: 1px;">HOT AUDIO AD</div>
+          <div style="font-size: 16px; margin: 4px 0; line-height: 1.1; text-transform: uppercase;">
+            PAK'S PUNCHING<br>PLAYLIST
+          </div>
+          <div style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #000;">
+            UPDATED FREQUENTLY // LISTEN TO PAK'S FAV SONGS!
+          </div>
+          <span class="fake-ad-btn">LISTEN NOW &gt;&gt;</span>
+        </a>
+
+        <!-- DATING SIM MINIGAME AD -->
+        <a href="dating_sim.html" class="waifu-ad">
+          <span class="waifu-ad-close">X</span>
+          <div class="waifu-ad-headline">HOT WAIFUS</div>
+          <div class="waifu-ad-sub">NEAR YOU WANT TO CHAT!</div>
+          <div class="waifu-ad-sub-box">CLICK BELOW TO TALK TO THEM!</div><br>
+          <span class="waifu-ad-btn">START CHAT now!</span>
+        </a>
+
+        <br>
+        <div style="border: 1px solid #00ff00; padding: 5px; font-size: 11px; text-align: center;">
+          [ BEST VIEWED IN NETSCAPE NAVIGATOR 4.0 AT 800x600 ]
+        </div>
+      </td>
+
+      <!-- STORE ITEMS -->
+      <td class="content">
+
+        <!-- PROD TAPE AUDIO DECK -->
+        <div class="tape-deck">
+          <div class="tape-screen">
+            <span style="color: #ffff00;">[PROD_TAPE "PAK_001_TAPE"]:</span> <span id="tape-title">PAK_001_BEAT_01.mp3</span>
+            <span id="tape-status" style="color: #888; float: right;">[STOPPED]</span>
+          </div>
+          <div>
+            <button class="win95-btn" onclick="prevTape()">|&lt;</button>
+            <button class="win95-btn" onclick="togglePlay()" id="play-btn">PLAY</button>
+            <button class="win95-btn" onclick="nextTape()">&gt;|</button>
+          </div>
+          <audio id="bg-audio" loop></audio>
+        </div>
+
+        <!-- REAL BEAT DOWNLOAD BUTTON -->
+        <div class="sketchy-dl-box">
+          <div style="font-size: 11px; color: #666; margin-bottom: 4px;">
+            Active Tape: <b id="dl-filename">PAK_001_BEAT_01.mp3</b> — <span style="color: #008000; font-weight: bold;">prod. lil pak (Free MP3)</span>
+          </div>
+          <a id="real-dl-link" href="PAK_001_BEAT_01.mp3" download="PAK_001_BEAT_01.mp3" class="sketchy-dl-btn">
+            &#11015; Your download is ready
+          </a>
+          <div style="font-size: 10px; color: #777; margin-top: 5px;">
+            Direct Beat Rip | Cycle Tapes Above to Download Different Drop Beats
+          </div>
+        </div>
+
+        <!-- WAREZ / MIRROR LINKS -->
+        <div style="background: #111; border: 2px dashed #ff00ff; padding: 8px; margin-bottom: 16px; font-size: 11px; text-align: center;">
+          <span style="color: #ffff00; font-weight: bold;">[ ALTERNATE ARCHIVE MIRRORS (FAST / NO WAIT) ]</span><br><br>
+          <a href="mirror_01.html" style="color: #00ff00; font-weight: bold;">[MIRROR_01: GARMENT_TUBE]</a> &nbsp;|&nbsp;
+          <a href="#" onclick="dropRandomFile('receipt'); return false;" style="color: #ff00ff; font-weight: bold;">[MIRROR_02: README_NOTE.TXT]</a> &nbsp;|&nbsp;
+          <a href="mirror_01.html" style="color: #00ffff; font-weight: bold;">[MIRROR_03: SKATE_CLIPS_HUB]</a> &nbsp;|&nbsp;
+          <a href="#" onclick="dropRandomFile('cat'); return false;" style="color: #ffff00; font-weight: bold;">[MIRROR_04: ASCII_CAT_SERIAL.TXT]</a>
+        </div>
+
+        <p id="drop01" style="margin-top: 0; color: #ffff00;">
+          &gt; C:\PAKS_PIECES\CURRENT_STOCK\ <span class="blink">_</span>
+        </p>
+
+        <!-- PRODUCT 1 -->
+        <table class="item-table" cellpadding="10" cellspacing="0">
+          <tr>
+            <td class="item-img">
+              <img src="https://placehold.co/200x200/000000/00ff00?text=PIECE_01.JPG" alt="Piece 01">
+            </td>
+            <td style="vertical-align: top;">
+              <span style="background: #ff0000; color: #fff; padding: 2px 5px; font-size: 11px;">1 OF 1</span>
+              <h3 style="margin: 5px 0; color: #00ffff;">"PAK_001_01" xxx</h3>
+              <p style="font-size: 13px; color: #cccccc;">
+                Filler word. Filler word. Filler word.
+              </p>
+              <p style="font-size: 16px; color: #ffff00; font-weight: bold;">
+                PRICE: $IDK.00 USD
+              </p>
+              <button class="win95-btn" onclick="addToCart('PAK_001_01', 67)">
+                [ + ADD TO STASH ]
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <!-- PRODUCT 2 -->
+        <table class="item-table" cellpadding="10" cellspacing="0">
+          <tr>
+            <td class="item-img">
+              <img src="https://placehold.co/200x200/000000/ff00ff?text=PIECE_02.JPG" alt="Piece 02">
+            </td>
+            <td style="vertical-align: top;">
+              <span style="background: #ff0000; color: #fff; padding: 2px 5px; font-size: 11px;">1 OF 1</span>
+              <h3 style="margin: 5px 0; color: #00ffff;">"PAK_001_2" xxx</h3>
+              <p style="font-size: 13px; color: #cccccc;">
+                Filler word. Filler word. Filler word.
+              </p>
+              <p style="font-size: 16px; color: #ffff00; font-weight: bold;">
+                PRICE: $IDK.00 USD
+              </p>
+              <button class="win95-btn" onclick="addToCart('PAK_001_2', 67)">
+                [ + ADD TO STASH ]
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <!-- MANIFESTO SECTION -->
+        <div id="manifesto" style="border: 2px dashed #00ff00; padding: 10px; font-size: 12px;">
+          <strong style="color: #ffff00;">// ABOUT PAKS PIECES:</strong><br>
+          pak's Pieces is an independent wearable art experiment. Every garment is made by hand to pull inspiration from archive fashion. Imperfections are intentional.
+        </div>
+      </td>
+    </tr>
+
+    <!-- FOOTER -->
+    <tr>
+      <td colspan="2" style="border-top: 4px ridge #808080; padding: 10px; text-align: center; font-size: 12px; color: #888;">
+        &copy; 2026 PAKS PIECES. ALL SALES FINAL — NO REFUNDS UNLESS I FAIL TO SHIP. <br>
+        [ <a href="#">WEBRING PREV</a> | <a href="#">RANDOM SITE</a> | <a href="#">WEBRING NEXT</a> ]
+      </td>
+    </tr>
+  </table>
+
+  <!-- "CONTINUE TO STASH?" INTERCEPT POPUP -->
+  <div id="stash-gate-box">
+    <div class="popup-title">
+      <span>C:\WINDOWS\SYSTEM32\STASH_GATE.EXE</span>
+      <button onclick="document.getElementById('stash-gate-box').style.display='none'" style="float: right; font-weight: bold; cursor: pointer;">X</button>
+    </div>
+    <div style="padding: 16px; text-align: center; font-size: 13px;">
+      <div style="font-size: 26px; margin-bottom: 6px;">⚠️</div>
+      <strong style="font-size: 15px;">CONTINUE TO STASH?</strong>
+      <p style="font-size: 12px; color: #222; margin: 8px 0 14px 0;">
+        Verifying you are not an archive demon before loading <code>CHECKOUT.EXE</code>...
+      </p>
+      <button class="win95-btn" onclick="redirectToMirror()" style="padding: 6px 14px; font-size: 12px;">
+        [ YES, CONTINUE TO STASH &gt;&gt; ]
+      </button>
+      <div style="margin-top: 10px;">
+        <a href="#" onclick="openRealCart(); return false;" style="font-size: 10px; color: #444;">skip mirror verification (direct checkout)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANUAL CHECKOUT POPUP -->
+  <div id="checkout-box">
+    <div class="popup-title">
+      <span>C:\WINDOWS\SYSTEM32\CHECKOUT.EXE</span>
+      <button onclick="closeCart()" style="float: right; font-weight: bold; cursor: pointer;">X</button>
+    </div>
+    <div style="padding: 15px; font-size: 13px;">
+      <strong>YOUR STASH:</strong>
+      <ul id="cart-items" style="background: #fff; border: 2px inset #808080; padding: 10px 25px; min-height: 40px;">
+        <li>(Empty)</li>
+      </ul>
+      <p style="margin: 8px 0;"><strong>SUBTOTAL: $<span id="cart-total">0</span>.00</strong></p>
+
+      <!-- SHIPPING & TAX DISCLOSURE -->
+      <div style="background: #e6f2ff; color: #000000; border: 2px inset #808080; padding: 7px; margin-bottom: 8px; font-size: 11px; line-height: 1.4;">
+        <strong>SHIPPING &amp; FEES DISCLOSURE:</strong><br>
+        • All shipments go out within <b>14 days of payment</b>.<br>
+        • <b>Taxes, shipping, &amp; handling</b> will be calculated and covered in our messages on Instagram before payment.
+      </div>
+
+      <!-- ALL SALES FINAL / NO REFUNDS NOTICE -->
+      <div style="background: #200000; color: #ffff00; border: 2px solid #ff0000; padding: 6px; margin-bottom: 8px; font-family: 'Courier New', monospace; font-size: 11px; text-align: center; font-weight: bold;">
+        ⚠️ ALL SALES FINAL — NO REFUNDS OR EXCHANGES *UNLESS I FAIL TO SHIP⚠️<br>
+        <span style="color: #ffffff; font-weight: normal; font-size: 10px;">
+          Every piece is a 1-of-1 handmade garment with intentional wear &amp; distress.
+        </span>
+      </div>
+
+      <p style="font-size: 11px; background: #ffffcc; border: 1px solid #000; padding: 6px;">
+        <strong>HOW TO BUY:</strong> Copy your stash list above and DM <a href="https://www.instagram.com/lilpunkasskid/" target="_blank" style="color: #000080; font-weight: bold;">@lilpunkasskid</a> on Instagram with your shipping address to finalize taxes, shipping, &amp; handling and send payment.
+      </p>
+      <button class="win95-btn" onclick="copyOrder()">COPY ORDER TO CLIPBOARD</button>
+      <button class="win95-btn" onclick="clearCart()">CLEAR</button>
+    </div>
+  </div>
+
+  <script>
+    const prodTapes = [
+      { title: "PAK_001_BEAT_01.mp3", file: "PAK_001_BEAT_01.mp3" },
+      { title: "PAK_001_BEAT_02.mp3", file: "PAK_001_BEAT_02.mp3" },
+      { title: "PAK_001_BEAT_03.mp3", file: "PAK_001_BEAT_03.mp3" }
+    ];
+
+    let currentTape = 0;
+    const audioEl = document.getElementById('bg-audio');
+    const tapeTitleEl = document.getElementById('tape-title');
+    const tapeStatusEl = document.getElementById('tape-status');
+    const playBtnEl = document.getElementById('play-btn');
+    const dlFilenameEl = document.getElementById('dl-filename');
+    const realDlLinkEl = document.getElementById('real-dl-link');
+
+    function loadTape(index, autoPlay = false) {
+      const tape = prodTapes[index];
+      audioEl.src = tape.file;
+      tapeTitleEl.innerText = tape.title;
+      dlFilenameEl.innerText = tape.file;
+      realDlLinkEl.href = tape.file;
+      realDlLinkEl.setAttribute('download', tape.file);
+
+      if (autoPlay) {
+        audioEl.play().then(() => {
+          tapeStatusEl.innerText = "[PLAYING]";
+          tapeStatusEl.style.color = "#00ff00";
+          playBtnEl.innerText = "PAUSE";
+        }).catch(() => {
+          tapeStatusEl.innerText = "[CLICK PLAY]";
+        });
+      } else {
+        tapeStatusEl.innerText = "[READY]";
+        tapeStatusEl.style.color = "#888";
+        playBtnEl.innerText = "PLAY";
+      }
+    }
+
+    function togglePlay() {
+      if (audioEl.paused) {
+        audioEl.play();
+        tapeStatusEl.innerText = "[PLAYING]";
+        tapeStatusEl.style.color = "#00ff00";
+        playBtnEl.innerText = "PAUSE";
+      } else {
+        audioEl.pause();
+        tapeStatusEl.innerText = "[PAUSED]";
+        tapeStatusEl.style.color = "#ffff00";
+        playBtnEl.innerText = "PLAY";
+      }
+    }
+
+    function nextTape() {
+      currentTape = (currentTape + 1) % prodTapes.length;
+      loadTape(currentTape, true);
+    }
+
+    function prevTape() {
+      currentTape = (currentTape - 1 + prodTapes.length) % prodTapes.length;
+      loadTape(currentTape, true);
+    }
+
+    loadTape(0, false);
+
+    function dropRandomFile(type) {
+      let filename = "PAKS_SECRET_ARTIFACT.txt";
+      let content = "";
+
+      if (type === "cat") {
+        filename = "ASCII_CAT_SERIAL_2003.txt";
+        content =
+          "=========================================\n" +
+          "   PAK'S PIECES // 1-OF-1 ARCHIVE NOTE   \n" +
+          "=========================================\n" +
+          "   /\\_/\\   SERIAL: PAK-001-NO-ARCHIVE-DEMONS\n" +
+          "  ( o.o )  STATUS: ARCHIVE DEMONS BLOCKED\n" +
+          "   > ^ <   RULE: SKATE UNTIL DESTROYED\n" +
+          "=========================================\n";
+      } else {
+        filename = "README_DONT_PAY_400_FOR_PANTS.txt";
+        content =
+          "SYSTEM LOG // PAKS_PIECES_MIRROR_02\n" +
+          "-----------------------------------\n" +
+          "Why are you clicking mirror links?\n" +
+          "Go back to the shop and grab a $15 1-of-1 piece.\n";
+      }
+
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    /* =========================================
+       CART & STASH REDIRECTS
+       ========================================= */
+    let cart = JSON.parse(localStorage.getItem('paks_stash') || '[]');
+    document.getElementById('cart-count').innerText = cart.length;
+
+    const mirrorPages = [
+      "mirror_01.html"
+    ];
+
+    function saveCart() {
+      localStorage.setItem('paks_stash', JSON.stringify(cart));
+      document.getElementById('cart-count').innerText = cart.length;
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      saveCart();
+      openCart();
+    }
+
+    function openCart() {
+      document.getElementById('stash-gate-box').style.display = 'block';
+    }
+
+    function redirectToMirror() {
+      saveCart();
+      window.location.href = "mirror_01.html?from=stash";
+    }
+
+    function openRealCart() {
+      document.getElementById('stash-gate-box').style.display = 'none';
+      const list = document.getElementById('cart-items');
+      const totalEl = document.getElementById('cart-total');
+      list.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        list.innerHTML = "<li>Your stash is empty.</li>";
+      } else {
+        cart.forEach(item => {
+          const li = document.createElement('li');
+          li.innerText = `${item.name} - $${item.price}`;
+          list.appendChild(li);
+          total += item.price;
+        });
+      }
+      totalEl.innerText = total;
+      document.getElementById('checkout-box').style.display = 'block';
+    }
+
+    function closeCart() {
+      document.getElementById('checkout-box').style.display = 'none';
+    }
+
+    function clearCart() {
+      cart = [];
+      saveCart();
+      openRealCart();
+    }
+
+    function copyOrder() {
+      if (cart.length === 0) return alert("Nothing in stash!");
+      const text =
+        "PAKS PIECES ORDER:\n" +
+        cart.map(i => `- ${i.name} ($${i.price})`).join("\n") +
+        "\n\n[TERMS: ALL SALES FINAL — NO REFUNDS UNLESS SHIPMENT FAILS | SHIPS WITHIN 14 DAYS | TAXES, SHIPPING & HANDLING COVERED IN IG DM]";
+      navigator.clipboard.writeText(text);
+      alert("ORDER COPIED! Paste it into an Instagram DM to @lilpunkasskid to cover taxes, shipping, & handling and complete your order.\n(Reminder: Shipments go out within 14 days; all sales are final.)");
+    }
+
+    if (window.location.search.includes("stash_verified=1")) {
+      openRealCart();
+    }
+  </script>
+
+</body>
+</html>
